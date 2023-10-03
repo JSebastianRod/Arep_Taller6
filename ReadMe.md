@@ -1,4 +1,4 @@
-# aller de trabajo individual en patrones arquitecturales
+# Taller de trabajo individual en patrones arquitecturales
 
 En este repositorio se encuentra la aplicacion con la aquitectura propuesta y su despliegue en AWS usando EC2 y docker, la cual consta de conectarse a 3 servicios los cuales van a almanecar datos en ina base de datos mongodb y retornara los mensajes.
 
