@@ -22,7 +22,7 @@ docker-compose up -d
 
 <br>
 
-![](images/com.png)
+![](/Images/com.png)
 
 <br>
 
@@ -30,7 +30,7 @@ El resultado de ejecutar estos comandos usando docker desktop es el siguiente:
 
 <br>
 
-![](images/docker.png)
+![](Images/docker.png)
 
 <br>
 
@@ -58,7 +58,7 @@ docker run -d -p 27017:27017 -v mongodb:/data/db -v mongodb_config:/data/configd
 
 ### Arquitectura
 
-![](images/arq.png)
+![](Images/arq.png)
 
 
 Servicio MongoDB:
@@ -77,7 +77,7 @@ Esta aplicación web consta de un cliente web y al menos un servicio REST. El cl
 ### Funcionamiento
 <br>
 
-![](images/despliegue1.png)
+![](Images/despliegue1.png)
 <br>
 Al escribir algo en el cuadro de texto y hacer click en el boton de sumbit se envia la peticion al servicio LogService el cual se encarga de almacenar el mensaje en la base de datos y retornar los ultimos 10 mensajes almacenados en la base de datos.
 
@@ -86,29 +86,29 @@ Al escribir algo en el cuadro de texto y hacer click en el boton de sumbit se en
 Usamos la clase LogroundRobin la cual es la encargada de recibir y retornar todas las peticiones que se realicen hacia el servidor
 <br>
 
-![](images/ele.png)
+![](Images/ele.png)
 <br>
 
 Esta hace uso de HttpRemoteCaller para realizar las peticiones a los servicios LogService1, LogService2 y LogService3, el cual calcula realizando un calculo
 <br>
 
-![](images/htp.png)
+![](Images/htp.png)
 <br>
 <br>
 
-![](images/htc.png)
+![](Images/htc.png)
 <br>
 Por lo cual viene el servicio logService el cual es el encargado de almacenar los mensajes en la base de datos y retornar los ultimos 10 mensajes almacenados en la base de datos.
 <br>
 
-![](images/logs.png)
+![](Images/logs.png)
 <br>
 
 ## Docker Hub
 Aparte de la forma de realizar el despliegue presentada anteriormente, se crearon los respectivos repositorios en Docker Hub por si desea consultarlos
 <br>
 
-![](images/do.png)
+![](Images/do.png)
 <br>
 
 Y sus direcciones son:
