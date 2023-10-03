@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Form Example</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <h1>Form with GET</h1>
-        <form action="/hello">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" value="John"><br><br>
-            <input type="button" value="Submit" onclick="loadGetMsg()">
-        </form> 
-        <div id="getrespmsg"></div>
+  <head>
+    <title>LogroundRobin</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <h1>LogroundRobin</h1>
+    <form action="/hello">
+      <label for="name">Data:</label><br />
+      <input type="text" id="name" name="name" value="" /><br /><br />
+      <input type="button" value="Submit" onclick="loadGetMsg()" />
+    </form>
+    <ul id="json-list"></ul>
+    <div id="getrespmsg"></div>
 
-        <script>
-            function loadGetMsg() {
-                let nameVar = document.getElementById("name").value;
-                const xhttp = new XMLHttpRequest();
-                xhttp.onload = function() {
-                    document.getElementById("getrespmsg").innerHTML =
-                    this.responseText;
-                }
-                xhttp.open("GET", "/log?value="+nameVar);
-                xhttp.send();
-            }
-        </script>
-    </body>
+    <script>
+      function loadGetMsg() {
+        let nameVar = document.getElementById("name").value;
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+          const jsonResponse = JSON.parse(this.responseText);
+          const stringDateList = [];
+          jsonResponse.forEach((jsonObject) => {
+            stringDateList.push(jsonObject.date + " - " + jsonObject.string);
+          });
+
+          const jsonListElement = document.querySelector("#json-list");
+          jsonListElement.innerHTML = "";
+          stringDateList.forEach((stringDate) => {
+            const listItemElement = document.createElement("li");
+            listItemElement.textContent = stringDate;
+            jsonListElement.appendChild(listItemElement);
+          });
+        };
+        xhttp.open("GET", "/log?value=" + nameVar);
+        xhttp.send();
+      }
+    </script>
+  </body>
 </html>

@@ -1,0 +1,37 @@
+version: '2'
+
+
+services:
+    web_app:
+        image: jsebastianrod/logroundrobin
+        container_name: roundrobbinserver
+        ports:
+            - "35000:4567"
+    web_service1:
+        image: jsebastianrod/test
+        container_name: service1
+        ports:
+            - "35001:4568"
+    web_service2:
+        image: jsebastianrod/test
+        container_name: service2
+        ports:
+            - "35002:4568"
+    web_service3:
+        image: jsebastianrod/test
+        container_name: service3
+        ports:
+            - "35003:4568"
+    db:
+        image: mongo:3.6.1
+        container_name: db
+        volumes:
+            - mongodb:/data/db
+            - mongodb_config:/data/configdb
+        ports:
+            - 27017:27017
+        command: mongod
+        
+volumes:
+    mongodb:
+    mongodb_config:

@@ -14,14 +14,15 @@ import java.net.URL;
 public class HttpRemoteCaller {
 
     private static final String USER_AGENT = "Mozilla/5.0";
-    private static final String[] LOG_SERVERS = new String[]{
-        "https://localhost:4568","https://localhost:4569", "https://localhost:4570"
+    private static final String[] LOG_SERVERS = new String[] {
+            "http://service1:4568", "http://service2:4568", "http://service3:4568"
     };
 
     private static int currentServer = 0;
 
-    public static String remoteLogCall(String message) throws IOException{
-        return remoteHttpCall(LOG_SERVERS[currentServer] + "/log?value?=" + message);
+    public static String remoteLogCall(String message) throws IOException {
+        System.out.println(LOG_SERVERS[currentServer] + "/log?value=" + message);
+        return remoteHttpCall(LOG_SERVERS[currentServer] + "/log?value=" + message);
     }
 
     public static String remoteHttpCall(String url) throws IOException {
@@ -30,12 +31,13 @@ public class HttpRemoteCaller {
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
-        
-        //The following invocation perform the connection implicitly before getting the code
+
+        // The following invocation perform the connection implicitly before getting the
+        // code
         int responseCode = con.getResponseCode();
         System.out.println("GET Response Code :: " + responseCode);
         StringBuffer response = new StringBuffer();
-        
+
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     con.getInputStream()));
@@ -61,4 +63,4 @@ public class HttpRemoteCaller {
         currentServer = (currentServer + 1) % 3;
     }
 
-} 
+}
